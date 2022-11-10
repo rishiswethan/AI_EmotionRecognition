@@ -1,0 +1,10 @@
+.pytest_cache
+/input_files
+.idea
+__pycache__
+source/.idea
+source/__pycache__
+source_ENM/__pycache__
+/faces
+/data
+/data_ENM

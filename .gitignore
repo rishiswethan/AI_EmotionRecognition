@@ -5,6 +5,9 @@ __pycache__
 source/.idea
 source/__pycache__
 source_ENM/__pycache__
+source_ENMimages/__pycache__
 /faces
 /data
 /data_ENM
+/data_ENMimages
+/no_tracking/

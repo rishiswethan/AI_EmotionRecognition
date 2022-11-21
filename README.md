@@ -1,3 +1,5 @@
+Project is still under construction, but should work in windows
+
 Here is a list of commands you can run for the project to run. This was tested on windows best should work in other operating systems as well.
 
 cd into the source folder of the project. Then,

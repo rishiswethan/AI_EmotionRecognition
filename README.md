@@ -16,7 +16,7 @@ Run the live camera happy detection
 'python RunSingle.py' 
 This command runs the detector on the file you select from the input_files folder
 
-Below link provides details of this projects working. It describes the same algorithm detecting all emotions, but, this one detects just happy. ENMimages folder of the above project uses the cropped images of eyes, nose, mouth, and their landmarks together to make predictions.
+Below link provides details of this projects working. It describes the same algorithm detecting all emotions, but, this one focuses on just happy. ENMimages folder of the above project uses the cropped images of eyes, nose, mouth, and their landmarks together to make predictions.
 
 https://medium.com/@rishiswethan.c.r/emotion-detection-using-facial-landmarks-and-deep-learning-b7f54fe551bf
 

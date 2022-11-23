@@ -47,7 +47,7 @@ Here is a video of the same algotihm using landmarks and images to make predicti
 https://www.youtube.com/watch?v=H5aaYGRGxDo
 
 #### Input and output of RunSingle.py from ENMimages:
-![happy.png](input_files%2Fhappy.png) ![img_10.png](img_10.png)
+![img.png](img.png) ![img_10.png](img_10.png)
 
 #### Heatmap of RunSingle.py from ENMimages:
 ![img_3.png](img_3.png)
@@ -65,4 +65,4 @@ https://www.youtube.com/watch?v=H5aaYGRGxDo
 ![img_5.png](img_5.png)
 
 #### A rough depection of the ENMimages model:
-![1_3 (1).png](..%2F..%2F..%2F..%2FDownloads%2F1_3%20%281%29.png)
+![img_1.png](img_1.png)

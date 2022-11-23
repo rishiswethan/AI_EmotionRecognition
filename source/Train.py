@@ -10,6 +10,9 @@ from keras.callbacks import *
 
 from tensorflow import keras
 from sklearn.utils import class_weight
+import matplotlib.pyplot as plt
+import traceback
+
 
 neuralNetworkArch = [13, 256, 256, 256, 256, 256, 128, 128, 128, 128, 64, 64, 32, 1]
 # neuralNetworkArch = [13, 1024, 1024, 512, 256, 128, 64, 32, 16, 1]
@@ -90,7 +93,7 @@ def def_model(input_shape):
     return model
 
 
-def train(X_train, Y_train, X_test, Y_test, learning_rate=0.001, epochs=1200, batch_size=64):
+def train(X_train, Y_train, X_test, Y_test, learning_rate=0.001, epochs=1200, batch_size=64, display_model_graphs=True, display_model_stats_only=False):
     print("X_train", X_train.shape)
     print("Y_train", Y_train.shape)
     print("X_test", X_test.shape)
@@ -100,7 +103,7 @@ def train(X_train, Y_train, X_test, Y_test, learning_rate=0.001, epochs=1200, ba
 
     model.summary()
 
-    model.compile(keras.optimizers.Adam(learning_rate), loss='binary_crossentropy', metrics=[tf.keras.metrics.Precision()])
+    model.compile(keras.optimizers.Adam(learning_rate), loss='binary_crossentropy', metrics=[tf.keras.metrics.Precision(), 'accuracy'])
 
     class_weights = class_weight.compute_class_weight(class_weight='balanced', classes=np.unique(Y_train), y=Y_train)
     class_weights = dict(zip(np.unique(Y_train), class_weights))
@@ -121,35 +124,57 @@ def train(X_train, Y_train, X_test, Y_test, learning_rate=0.001, epochs=1200, ba
 
     callbacks = [Early_Stopping, Reducing_LR, Checkpoint]
 
+    if display_model_stats_only:
+        try:
+            model.load_weights(MODEL_SAVE_PATH + 'my_model.h5')
+        except:
+            traceback.print_exc()
+            print("Training a new model")
+
+    print("Validation set:")
     preds = model.evaluate(X_test, Y_test, batch_size=batch_size, verbose=1, sample_weight=None)
-    predicts = model.predict(X_test, batch_size=batch_size)
-    pos_pred_cnt = 0
-    pos_correct_cnt = 0
-    label_pos = 0
+    if display_model_stats_only:
+        print("Train set:")
+        preds = model.evaluate(X_train, Y_train, batch_size=batch_size, verbose=1, sample_weight=None)
+        return
 
-    for i, pred in enumerate(predicts):
-        if i < 20:
-            print(round(pred[0], 3), end=", ")
-        if Y_test[i] == 1:
-            label_pos += 1
-        if pred[0] > 0.5:
-            pos_pred_cnt += 1
-            if Y_test[i] == 1:
-                pos_correct_cnt += 1
-
-    if pos_pred_cnt == 0:
-        pos_pred_cnt = 1
-
-    print("True positive", (pos_correct_cnt, pos_pred_cnt))
-    print("True positive %", (pos_correct_cnt / pos_pred_cnt))
-    print("Label pos", label_pos)
-
-    print()
-    print("Loss = " + str(preds[0]))
-    print("Test Accuracy = " + str(preds[1]) + "\n\n\n\n\n")
-
-    history = model.fit(x=X_train, y=Y_train, batch_size=batch_size, epochs=epochs,class_weight=class_weights,callbacks=callbacks, validation_data=(X_test, Y_test))
+    history = model.fit(x=X_train, y=Y_train, batch_size=batch_size, epochs=epochs, class_weight=class_weights, callbacks=callbacks, validation_data=(X_test, Y_test))
     history.model.save(MODEL_SAVE_PATH + 'my_model.h5')
+
+    if display_model_graphs:
+        # list all data in history
+        print(history.history.keys())
+        # summarize history for accuracy
+        plt.plot(history.history['accuracy'])
+        plt.plot(history.history['val_accuracy'])
+        plt.title('model accuracy')
+        plt.ylabel('accuracy')
+        plt.xlabel('epoch')
+        plt.legend(['train', 'test'], loc='upper left')
+        plt.show()
+        # summarize history for loss
+        plt.plot(history.history['loss'])
+        plt.plot(history.history['val_loss'])
+        plt.title('model loss')
+        plt.ylabel('loss')
+        plt.xlabel('epoch')
+        plt.legend(['train', 'test'], loc='upper left')
+        plt.show()
+        #summarize history of precision
+        plt.plot(history.history['precision'])
+        plt.plot(history.history['val_precision'])
+        plt.title('model precision')
+        plt.ylabel('precision')
+        plt.xlabel('epoch')
+        plt.legend(['train', 'test'], loc='upper left')
+        plt.show()
+        # summarize history of lr
+        plt.plot(history.history['lr'])
+        plt.title('Learning rate')
+        plt.ylabel('learning rate')
+        plt.xlabel('epoch')
+        plt.legend(['lr'], loc='upper left')
+        plt.show()
 
     return model
 
@@ -212,5 +237,12 @@ def softmaxToProbs(soft):
 
 
 if __name__ == '__main__':
+    print("Loading data...")
     X, Y, Xtest, Ytest = load_data()
-    train(X, Y, Xtest, Ytest, epochs=initial_epoch, batch_size=batch_size)
+    ch = int(input("1) Train the network\n"
+                   "2) Display the stats of the model\n"
+                   "Enter your choice: "))
+    if ch == 1:
+        train(X, Y, Xtest, Ytest, epochs=initial_epoch, batch_size=batch_size, display_model_stats_only=False)
+    elif ch == 2:
+        train(X, Y, Xtest, Ytest, epochs=initial_epoch, batch_size=batch_size, display_model_stats_only=True)

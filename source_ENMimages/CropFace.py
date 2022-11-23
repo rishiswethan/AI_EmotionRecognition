@@ -80,6 +80,7 @@ def getFacialLandmarks(image_dir='', img=None, showImg=True, non_ENM_landmarks=T
 
         try:
             sub_face = cv2.resize(sub_face_, (100, 100))
+            disp_sub_face = sub_face.copy()
             rec = detector(sub_face, 1)
             # rec = rects
             # print("rec__"+str(len(rec)), list(rec))
@@ -98,16 +99,18 @@ def getFacialLandmarks(image_dir='', img=None, showImg=True, non_ENM_landmarks=T
                     (xx, yy) = xy
                     if not ((j in non_ENM_landmarks_list) and (non_ENM_landmarks)):
                         lands.append((xx, yy))
-                        # cv2.circle(sub_face, (xx, yy), 5, (0, 255, 0), 1)
+                        cv2.circle(disp_sub_face, (xx, yy), 0, (0, 255, 0), -1)
                         # cv2.putText(sub_face, str(j), (xx, yy), cv2.QT_FONT_NORMAL, 1, (0, 0, 255), 0)
 
                         highlighted_image_array = pixel_radius_highlighter(highlighted_image_array, xy, length=crop_pixel_sqlen_list[j])
                 ENM_cropped_image_array = remove_non_highlighted_pixels(sub_face, highlighted_image_array)
+                display_ENMcroppy_image_array = remove_non_highlighted_pixels(disp_sub_face, highlighted_image_array)
                 face_landmarks.append(lands)
                 if showImg:
                     # cv2.imshow(image_dir, sub_face)
-                    Image.fromarray(highlighted_image_array).show()
-                    Image.fromarray(ENM_cropped_image_array).show()
+                    # Image.fromarray(highlighted_image_array).show()
+                    # Image.fromarray(ENM_cropped_image_array).show()
+                    Image.fromarray(display_ENMcroppy_image_array).show()
                     # Image.fromarray(sub_face).show()
                     cv2.waitKey(0)
             faces.append(ENM_cropped_image_array)

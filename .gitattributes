@@ -2,3 +2,6 @@ source/shape_predictor_68_face_landmarks.dat filter=lfs diff=lfs merge=lfs -text
 source_ENM/shape_predictor_68_face_landmarks.dat filter=lfs diff=lfs merge=lfs -text
 /source_ENMimages/shape_predictor_68_face_landmarks.dat filter=lfs diff=lfs merge=lfs -text
 models_ENMimages/my_model.h5 filter=lfs diff=lfs merge=lfs -text
+data/ filter=lfs diff=lfs merge=lfs -text
+data_ENM/ filter=lfs diff=lfs merge=lfs -text
+data_ENMimages/ filter=lfs diff=lfs merge=lfs -text

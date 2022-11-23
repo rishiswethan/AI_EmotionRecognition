@@ -7,7 +7,13 @@ source/__pycache__
 source_ENM/__pycache__
 source_ENMimages/__pycache__
 /faces
-/data
-/data_ENM
-/data_ENMimages
 /no_tracking/
+/source_ENMimages.zip
+/data_ENMimages.zip
+/source_ENMimages_all_lands/
+/models_ENMimages.zip
+/no_tracking.zip
+/data/
+/data_ENM/
+/data_ENMimages/
+/models_ENMimages_all_lands/

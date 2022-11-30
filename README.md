@@ -55,22 +55,22 @@ Here is a video of the same algotihm using landmarks and images to make predicti
 https://www.youtube.com/watch?v=H5aaYGRGxDo
 
 #### Input and output of RunSingle.py from ENMimages:
-![img_14.png](img_14.png)   ![img_13.png](img_13.png)
+![img_14.png](other_files/img_14.png)   ![img_13.png](other_files/img_13.png)
 
 #### Heatmap of RunSingle.py from ENMimages:
-![img_3.png](img_3.png)
+![img_3.png](other_files/img_3.png)
 
 #### First conv layer of ENMimages:
-![img_8.png](img_8.png)
+![img_8.png](other_files/img_8.png)
 
 #### Second conv layer of ENMimages:
-![img_7.png](img_7.png)
+![img_7.png](other_files/img_7.png)
 
 #### Third conv layer of ENMimages:
-![img_6.png](img_6.png)
+![img_6.png](other_files/img_6.png)
 
 #### Fourth conv layer of ENMimages:
-![img_5.png](img_5.png)
+![img_5.png](other_files/img_5.png)
 
 #### A rough depection of the ENMimages model:
-![img_1.png](img_1.png)
+![img_1.png](other_files/img_1.png)

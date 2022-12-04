@@ -1,3 +1,6 @@
+The project may need a bit of cleaning up of comments, unused functions, etc from my experimentation. If you want to build from this,
+feel free to do so. Everything works fine, so don't worry about that.
+
 Goal of this project is emotion recognition from facial landmarks and the image itself. This project focuses on just predicting the
 emotion 'happy', but it can be expanded to predict other emotions as well. This limitation was an attempt to beat the current benchmark emotion recognition
 models, and I did come close. Do check it out!
@@ -13,9 +16,6 @@ already gets the landmarks of the face directly from a landmark detector(see lin
 of eyes, nose, and mouth to fill out any other information it may need, to make an accurate prediction.
 
 The program was tested on python 3.10.8, tensorflow 2.10.0 and was tested on windows 11 with a GTX 1080ti. It should work on other hardware and OS was well.
-
-The project may need a bit of cleaning up of comments, unused functions, etc from my experimentation. If you want to build from this,
-feel free to do so. Everything works fine, so don't worry about that.
 
 ### How to run project:
 

@@ -1,4 +1,4 @@
-The project may need a bit of cleaning up of comments, unused functions, etc from my experimentation. If you want to build from this,
+***This project is under construction*** and may need a bit of cleaning up of comments, unused functions, etc from my experimentation. If you want to build from this,
 feel free to do so. Everything works fine, so don't worry about that.
 
 Goal of this project is emotion recognition from facial landmarks and the image itself. This project focuses on just predicting the
